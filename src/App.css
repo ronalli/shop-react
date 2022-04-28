@@ -45,7 +45,6 @@ nav {
 
 main {
 	grid-area: main;
-	max-width: 1200px;
 	padding: 0 1.5rem;
 	margin: 0 15%;
 }
