@@ -1,0 +1,21 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	cursor: pointer;
+}
+
+.card-content {
+	flex-grow: 1;
+}
+
+.card .card-content .card-title {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.card-action {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
