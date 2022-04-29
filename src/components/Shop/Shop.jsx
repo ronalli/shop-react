@@ -4,12 +4,18 @@ import Preloader from '../../Services/Preloader/Preloader';
 import GoodsList from '../GoodsList/GoodsList';
 import Cart from '../Cart/Cart';
 import BasketList from '../BasketList/BasketList';
+import Alert from '../Alert/Alert';
 
 const Shop = () => {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
   const [isBasketShow, setIsBasketShow] = useState(false);
+  const [nameAlert, setNameAlert] = useState('');
+
+  const closeAlert = () => {
+    setNameAlert('');
+  };
 
   const handleBasketShow = () => {
     setIsBasketShow(!isBasketShow);
@@ -67,6 +73,7 @@ const Shop = () => {
       });
       setOrder(oldOrder);
     }
+    setNameAlert(item.name);
   };
 
   useEffect(() => {
@@ -102,6 +109,7 @@ const Shop = () => {
           incQuantity={incQuantity}
         />
       ) : null}
+      {nameAlert && <Alert name={nameAlert} closeAlert={closeAlert} />}
     </main>
   );
 };

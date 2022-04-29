@@ -1,7 +1,7 @@
 import './goodsList.css';
 import GoodItem from '../GoodItem/GoodItem';
 
-const Goods = ({ goods, addToBacket }) => {
+const GoodsList = ({ goods, addToBacket }) => {
   if (!goods.length) return <h2>Nothing here</h2>;
   return (
     <div className='goods'>
@@ -14,4 +14,4 @@ const Goods = ({ goods, addToBacket }) => {
   );
 };
 
-export default Goods;
+export default GoodsList;
