@@ -7,6 +7,7 @@
 	max-width: 95%;
 	background-color: #fff;
 	box-shadow: inset -1px 5px 8px 5px #000000, 3px 6px 16px 0px #04101d, 5px 5px 15px 5px rgba(0,0,0,0);
+	animation: show 500ms ease-in-out;
 }
 
 
@@ -16,4 +17,15 @@
 	top: 0.5rem;
 	cursor: pointer;
 	color: white;
+}
+
+@keyframes show {
+	from {
+		top: 70%;
+		opacity: 0;
+	}
+	to {
+		top: 50%;
+		opacity: 1;
+	}
 }

@@ -15,18 +15,12 @@ const Shop = () => {
     setIsBasketShow(!isBasketShow);
   };
 
-  useEffect(() => {
-    fetch(API_URL, {
-      headers: {
-        Authorization: API_KEY,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        data && setGoods(data.shop);
-        setLoading(false);
-      });
-  }, []);
+  const removeFromBasket = (itemId) => {
+    let newOrder = order.filter((el) => el.id !== itemId);
+    setOrder(newOrder);
+  };
+
+  const updateItemBacket = () => {};
 
   const addToBacket = (item) => {
     const itemIndex = order.findIndex((newItem) => newItem.id === item.id);
@@ -50,6 +44,19 @@ const Shop = () => {
     }
   };
 
+  useEffect(() => {
+    fetch(API_URL, {
+      headers: {
+        Authorization: API_KEY,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        data && setGoods(data.shop);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main>
       <Cart
@@ -62,7 +69,11 @@ const Shop = () => {
         <GoodsList goods={goods} addToBacket={addToBacket} />
       )}
       {isBasketShow ? (
-        <BasketList order={order} handleBasketShow={handleBasketShow} />
+        <BasketList
+          order={order}
+          handleBasketShow={handleBasketShow}
+          removeFromBasket={removeFromBasket}
+        />
       ) : null}
     </main>
   );
