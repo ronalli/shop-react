@@ -20,7 +20,32 @@ const Shop = () => {
     setOrder(newOrder);
   };
 
-  const updateItemBacket = () => {};
+  const incQuantity = (itemId) => {
+    let newOrder = order.map((el) => {
+      if (el.id === itemId) {
+        let newQuantity = el.quantity + 1;
+        return {
+          ...el,
+          quantity: newQuantity,
+        };
+      }
+      return el;
+    });
+    setOrder(newOrder);
+  };
+  const decQuantity = (itemId) => {
+    let newOrder = order.map((el) => {
+      if (el.id === itemId) {
+        let newQuantity = el.quantity - 1;
+        return {
+          ...el,
+          quantity: el.quantity > 0 ? newQuantity : 0,
+        };
+      }
+      return el;
+    });
+    setOrder(newOrder);
+  };
 
   const addToBacket = (item) => {
     const itemIndex = order.findIndex((newItem) => newItem.id === item.id);
@@ -73,6 +98,8 @@ const Shop = () => {
           order={order}
           handleBasketShow={handleBasketShow}
           removeFromBasket={removeFromBasket}
+          decQuantity={decQuantity}
+          incQuantity={incQuantity}
         />
       ) : null}
     </main>

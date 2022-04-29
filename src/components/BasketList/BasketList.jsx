@@ -2,7 +2,13 @@ import './basketList.css';
 import BasketItem from '../BasketItem/BasketItem';
 
 const BasketList = (props) => {
-  const { order, handleBasketShow, removeFromBasket } = props;
+  const {
+    order,
+    handleBasketShow,
+    removeFromBasket,
+    incQuantity,
+    decQuantity,
+  } = props;
   const total = order.reduce((sum, el) => {
     return sum + el.price * el.quantity;
   }, 0);
@@ -16,6 +22,8 @@ const BasketList = (props) => {
               key={el.id}
               {...el}
               removeFromBasket={removeFromBasket}
+              decQuantity={decQuantity}
+              incQuantity={incQuantity}
             />
           );
         })
