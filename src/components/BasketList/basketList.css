@@ -1,0 +1,19 @@
+.basket-list {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	min-width: 50rem;
+	max-width: 95%;
+	background-color: #fff;
+	box-shadow: inset -1px 5px 8px 5px #000000, 3px 6px 16px 0px #04101d, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+
+.basket-close {
+	position: absolute;
+	right: 0.5rem;
+	top: 0.5rem;
+	cursor: pointer;
+	color: white;
+}

@@ -3,11 +3,17 @@ import { API_KEY, API_URL } from '../../config';
 import Preloader from '../../Services/Preloader/Preloader';
 import GoodsList from '../GoodsList/GoodsList';
 import Cart from '../Cart/Cart';
+import BasketList from '../BasketList/BasketList';
 
 const Shop = () => {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
+  const [isBasketShow, setIsBasketShow] = useState(false);
+
+  const handleBasketShow = () => {
+    setIsBasketShow(!isBasketShow);
+  };
 
   useEffect(() => {
     fetch(API_URL, {
@@ -46,12 +52,18 @@ const Shop = () => {
 
   return (
     <main>
-      <Cart quantity={order.length || null} />
+      <Cart
+        quantity={order.length || null}
+        handleBasketShow={handleBasketShow}
+      />
       {loading ? (
         <Preloader />
       ) : (
         <GoodsList goods={goods} addToBacket={addToBacket} />
       )}
+      {isBasketShow ? (
+        <BasketList order={order} handleBasketShow={handleBasketShow} />
+      ) : null}
     </main>
   );
 };
