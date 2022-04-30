@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { API_KEY, API_URL } from '../../config';
 import Preloader from '../../Services/Preloader/Preloader';
 import GoodsList from '../GoodsList/GoodsList';
 import Cart from '../Cart/Cart';
 import BasketList from '../BasketList/BasketList';
 import Alert from '../Alert/Alert';
+import { ShopContext } from '../../context/context';
 
 const Shop = () => {
   const [goods, setGoods] = useState([]);
@@ -12,6 +13,9 @@ const Shop = () => {
   const [order, setOrder] = useState([]);
   const [isBasketShow, setIsBasketShow] = useState(false);
   const [nameAlert, setNameAlert] = useState('');
+
+  const { example } = useContext(ShopContext);
+  console.log(example);
 
   const closeAlert = () => {
     setNameAlert('');
