@@ -17,12 +17,9 @@ export const reducer = (state, { type, payload }) => {
         newOrder = [...state.order, newItem];
       } else {
         newOrder = state.order.map((el, index) => {
-          if (index === itemIndex) {
-            return {
-              ...el,
-              quantity: el.quantity + 1,
-            };
-          }
+          return index === itemIndex
+            ? { ...el, quantity: el.quantity + 1 }
+            : el;
         });
       }
       return {
@@ -35,28 +32,18 @@ export const reducer = (state, { type, payload }) => {
       return {
         ...state,
         order: state.order.map((el) => {
-          if (el.id === payload.id) {
-            let newQuantity = el.quantity - 1;
-            return {
-              ...el,
-              quantity: el.quantity > 0 ? newQuantity : 0,
-            };
-          }
-          return el;
+          return el.id === payload.id
+            ? { ...el, quantity: el.quantity > 0 ? el.quantity - 1 : 0 }
+            : el;
         }),
       };
     case 'INC_QUANTITY':
       return {
         ...state,
         order: state.order.map((el) => {
-          if (el.id === payload.id) {
-            let newQuantity = el.quantity + 1;
-            return {
-              ...el,
-              quantity: newQuantity,
-            };
-          }
-          return el;
+          return el.id === payload.id
+            ? { ...el, quantity: el.quantity + 1 }
+            : el;
         }),
       };
     case 'HANDLE_BASKET_SHOW':
