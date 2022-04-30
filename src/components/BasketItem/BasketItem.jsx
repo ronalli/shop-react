@@ -1,18 +1,15 @@
+import { useContext } from 'react';
+import { ShopContext } from '../../context/context';
+
 import './basketItem.css';
 
 const BasketItem = (props) => {
-  const {
-    id,
-    name,
-    price,
-    quantity,
-    removeFromBasket,
-    incQuantity,
-    decQuantity,
-  } = props;
+  const { id, name, price, quantity } = props;
+  const { removeFromBasket, incQuantity, decQuantity } =
+    useContext(ShopContext);
   return (
     <li className='collection-item'>
-      {`${name} x ${quantity} - ${price * quantity} usd`}
+      {`${name} x ${quantity} - ${price.regularPrice * quantity} usd`}
       <span className='control-quantity'>
         <button className='material-icons btn' onClick={() => incQuantity(id)}>
           add

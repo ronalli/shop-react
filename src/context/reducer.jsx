@@ -1,11 +1,17 @@
 export const reducer = (state, { type, payload }) => {
   switch (type) {
+    case 'SET_GOODS':
+      return {
+        ...state,
+        goods: payload || [],
+        loading: false,
+      };
     case 'ADD_TO_BASKET': {
       const itemIndex = state.order.findIndex((item) => item.id === payload.id);
       let newOrder = null;
       if (itemIndex < 0) {
         const newItem = {
-          ...item,
+          ...payload,
           quantity: 1,
         };
         newOrder = [...state.order, newItem];
